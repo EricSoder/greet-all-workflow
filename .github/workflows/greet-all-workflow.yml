@@ -1,0 +1,38 @@
+on:
+  workflow_call:
+    inputs:
+      greet-composit:
+        required: true
+        type: string
+      greet-javascript:
+        required: true
+        type: string
+      greet-container:
+        required: true
+        type: string
+
+jobs:
+
+  greet-composit:
+    runs-on: ubuntu-latest
+    name: 'Greets composit action'
+    steps:
+      - uses: EricSoder/composit-action@main
+        with: 
+          who-to-greet: ${{ inputs.greet-composit }}
+          
+  greet-javascript:
+    runs-on: ubuntu-latest
+    name: 'Greets javascript action'
+    steps:
+      - uses: EricSoder/javascript-action@main
+        with: 
+          who-to-greet: ${{ inputs.greet-javascript }}
+
+  greet-container:
+    runs-on: ubuntu-latest
+    name: 'Greets container action'
+    steps:
+      - uses: EricSoder/container-action@main
+        with: 
+          who-to-greet: ${{ inputs.greet-container }}
